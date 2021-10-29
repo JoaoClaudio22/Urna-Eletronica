@@ -11,6 +11,36 @@ var btnCorrige = document.querySelector(".btn-corrige")
 var btnConfirma = document.querySelector(".btn-confirma")
 
 
+for(let i = 0 ; i < btn.length ; i++){
+    btn[i].addEventListener("mousedown",() => {
+        btn[i].classList.add("btn-numPressionado")
+    })
+    btn[i].addEventListener("mouseup",() => {
+        btn[i].classList.remove("btn-numPressionado")
+    })
+}
+
+btnBranco.addEventListener("mousedown",() => {
+    btnBranco.classList.add("btn-brancoPressionado")
+})
+btnBranco.addEventListener("mouseup",() => {
+    btnBranco.classList.remove("btn-brancoPressionado")
+})
+
+btnCorrige.addEventListener("mousedown",() => {
+    btnCorrige.classList.add("btn-corrigePressionado")
+})
+btnCorrige.addEventListener("mouseup",() => {
+    btnCorrige.classList.remove("btn-corrigePressionado")
+})
+
+btnConfirma.addEventListener("mousedown",() => {
+    btnConfirma.classList.add("btn-confirmaPressionado")
+})
+btnConfirma.addEventListener("mouseup",() => {
+    btnConfirma.classList.remove("btn-confirmaPressionado")
+})
+
 var etapaAtual = 0
 var numero = ""
 var branco = false
@@ -50,7 +80,6 @@ function atualizaInterface(){
             return false
         }
     })
-
     if(canditado.length > 0){
         let etapa = etapas[etapaAtual]
         canditado = canditado[0]
@@ -72,7 +101,6 @@ function atualizaInterface(){
             }
             
         }
-
         lateral.innerHTML = fotosHtml
     }else{
         seuVoto.style.display = "block"
@@ -82,11 +110,6 @@ function atualizaInterface(){
 
     console.log("Candidato",canditado)
 }
-
-
-
-
-
 for(let i = 0; i < btn.length ; i++){ // Evento de click no teclado numérico
     btn[i].addEventListener("click", (evt) => {
         var num = evt.target.innerHTML
@@ -105,9 +128,7 @@ for(let i = 0; i < btn.length ; i++){ // Evento de click no teclado numérico
         } 
     })
 }
-
 btnBranco.addEventListener("click",(evt) => {
-
     if(numero === ""){
         branco = true
         seuVoto.style.display = "block"
@@ -119,11 +140,9 @@ btnBranco.addEventListener("click",(evt) => {
     }
    
 })
-
 btnCorrige.addEventListener("click",(evt) => {
     comecarEtapa()
 })
-
 btnConfirma.addEventListener("click",(evt) => {
     let etapa = etapas[etapaAtual]
 
@@ -143,7 +162,6 @@ btnConfirma.addEventListener("click",(evt) => {
         votoCofirmado = true
         console.log("Confirmou voto: "+numero)
     }
-
     if(votoCofirmado){
         etapaAtual++
         if(etapas[etapaAtual] !== undefined){
@@ -155,17 +173,13 @@ btnConfirma.addEventListener("click",(evt) => {
             aviso.style.display = "none"
             lateral.innerHTML = ""
             numeros.innerHTML = ""
+
             var btnFinal = document.querySelector(".btnFinal")
             btnFinal.style.display = "block"
         }
-        
         console.log(confVotos)
     }
 })
-
-
-
-
 comecarEtapa()
 
 
